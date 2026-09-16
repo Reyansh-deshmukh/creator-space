@@ -1,2 +1,201 @@
-# creator-space
-Give What Your Videos Deserve.
+[Creator_Space.html](https://github.com/user-attachments/files/32296563/Creator_Space.html)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creator Space — Your connected creative system</title>
+<style>
+  :root{
+    --bg:#050505; --panel:#101010; --panel2:#151515; --line:#252525;
+    --text:#f1f1ee; --muted:#8d8d8a; --soft:#b7b7b2;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  a{color:inherit;text-decoration:none}
+  button,input{font:inherit}
+  .nav{position:fixed;z-index:20;top:0;left:0;right:0;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:linear-gradient(#050505 20%,transparent);backdrop-filter:blur(8px)}
+  .brand{display:flex;gap:11px;align-items:center;font-weight:650;font-size:16px}
+  .logo{width:24px;height:24px;position:relative}
+  .logo:before,.logo:after{content:"";position:absolute;background:#eee;border-radius:5px}
+  .logo:before{width:12px;height:7px;left:1px;top:4px;transform:skew(35deg)}
+  .logo:after{width:12px;height:7px;right:1px;bottom:4px;transform:skew(35deg)}
+  .navlinks{display:flex;gap:30px;color:#a4a4a1;font-size:14px}
+  .navlinks a:hover{color:white}
+  .navactions{display:flex;align-items:center;gap:22px;font-size:14px}
+  .pill{background:#eee;color:#111;border:0;border-radius:9px;padding:12px 17px;font-weight:650;cursor:pointer}
+  .pill:hover{background:white;transform:translateY(-1px)}
+  .hero{min-height:920px;padding:170px 5vw 90px;position:relative;overflow:hidden;display:grid;place-items:center;text-align:center}
+  .hero:before{content:"";position:absolute;width:900px;height:600px;left:50%;top:170px;transform:translateX(-50%);background:radial-gradient(circle,rgba(255,255,255,.075),transparent 65%);filter:blur(12px)}
+  .eyebrow{position:relative;color:#666;letter-spacing:.22em;font-size:11px;text-transform:uppercase;margin-bottom:35px}
+  h1{position:relative;max-width:900px;margin:0 auto;font-size:clamp(55px,7.4vw,112px);line-height:.91;letter-spacing:-.065em;font-weight:600}
+  .hero h1 em{font-family:Georgia,serif;font-weight:400;letter-spacing:-.08em}
+  .hero p{position:relative;max-width:670px;margin:34px auto 0;color:#888;font-size:19px;line-height:1.65}
+  .hero-cta{position:relative;margin-top:32px;display:flex;gap:12px;justify-content:center}
+  .outline{background:transparent;border:1px solid #343434;color:#ddd;border-radius:9px;padding:12px 17px;cursor:pointer}
+  .outline:hover{background:#151515}
+  .showcase{position:relative;margin:50px auto 0;max-width:1020px;border:1px solid #292929;border-radius:24px;background:#0d0d0d;box-shadow:0 30px 100px rgba(0,0,0,.6);overflow:hidden;text-align:left}
+  .showbar{height:45px;border-bottom:1px solid #222;display:flex;align-items:center;gap:7px;padding:0 16px}
+  .dot{width:7px;height:7px;border-radius:50%;background:#333}
+  .dash{height:330px;padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:16px;background:linear-gradient(120deg,#0d0d0d,#131313)}
+  .mock-card{border:1px solid #262626;border-radius:15px;padding:20px;background:#101010}
+  .mock-title{font-size:11px;letter-spacing:.16em;color:#656562;text-transform:uppercase}
+  .mock-big{font-size:34px;margin-top:45px;letter-spacing:-.04em}
+  .bars{margin-top:30px;display:flex;align-items:end;gap:7px;height:85px}
+  .bars i{display:block;flex:1;background:#353535;border-radius:3px 3px 0 0}
+  .feature-wrap{max-width:1400px;margin:0 auto;padding:80px 5vw}
+  .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .feature{min-height:530px;border:1px solid #222;border-radius:22px;background:#0f0f0f;padding:55px;overflow:hidden;position:relative}
+  .feature .num{font-size:11px;letter-spacing:.17em;color:#676763;text-transform:uppercase}
+  .feature h2{font-size:clamp(36px,4vw,62px);line-height:.98;letter-spacing:-.055em;margin:28px 0 18px;max-width:600px}
+  .feature p{color:#777;line-height:1.65;max-width:590px;font-size:16px}
+  .ui{position:absolute;left:32px;right:32px;bottom:0;height:245px;border:1px solid #262626;border-bottom:0;border-radius:15px 15px 0 0;background:#111;padding:18px}
+  .thumbs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  .thumb{height:125px;border-radius:9px;border:1px solid #333;background:linear-gradient(135deg,#252525,#101010);display:flex;align-items:center;justify-content:center;font-weight:700}
+  .thumb.light{background:#deded9;color:#111}
+  .chart{height:115px;margin-top:20px;border-bottom:1px solid #252525;position:relative}
+  .chart:after{content:"";position:absolute;left:0;right:0;bottom:18px;height:80px;border-bottom:2px solid #aaa;transform:skewY(-7deg)}
+  .wide{grid-column:1/-1;min-height:500px}
+  .wide .ui{height:260px}
+  .ideas{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+  .idea{padding:18px;border:1px solid #292929;border-radius:10px;background:#151515}
+  .idea b{display:block;font-size:13px;margin-bottom:9px}.idea span{color:#777;font-size:12px}
+  .faq{max-width:1000px;margin:0 auto;padding:120px 5vw}
+  .faq h2{font-size:clamp(44px,6vw,80px);letter-spacing:-.06em;margin:0 0 55px}
+  .q{border-top:1px solid #252525;padding:25px 0;display:flex;justify-content:space-between;gap:20px;cursor:pointer}
+  .q:last-child{border-bottom:1px solid #252525}
+  .q strong{font-size:18px;font-weight:500}.plus{color:#777;font-size:22px}
+  .answer{display:none;color:#777;line-height:1.6;padding:0 35px 24px 0;max-width:750px}
+  .q.open + .answer{display:block}
+  footer{border-top:1px solid #181818;padding:90px 5vw 45px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px}
+  .foot-brand{font-size:clamp(45px,6vw,82px);letter-spacing:-.07em;line-height:.9}
+  .foot-brand em{font-family:Georgia,serif;font-weight:400}
+  .foot-col h4{font-size:12px;color:#666;letter-spacing:.15em;text-transform:uppercase;margin:0 0 20px}
+  .foot-col a{display:block;color:#8c8c88;margin:12px 0;font-size:14px}.foot-col a:hover{color:#fff}
+  .copyright{grid-column:1/-1;color:#4d4d49;font-size:12px;margin-top:40px}
+  .modal{display:none;position:fixed;z-index:50;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:20px}
+  .modal.show{display:flex}
+  .box{width:min(440px,100%);background:#151515;border:1px solid #292929;border-radius:18px;padding:30px;box-shadow:0 30px 100px #000}
+  .box h3{font-size:28px;letter-spacing:-.04em;margin:0 0 8px}.box p{color:#777;margin:0 0 25px}
+  label{display:block;font-size:13px;color:#bbb;margin:16px 0 7px}
+  input{width:100%;padding:13px 14px;background:#222;border:1px solid #303030;color:white;border-radius:8px;outline:none}
+  input:focus{border-color:#666}
+  .close{float:right;background:none;border:0;color:#888;font-size:24px;cursor:pointer}
+  .submit{width:100%;margin-top:22px}
+  @media(max-width:800px){
+    .navlinks{display:none}.hero{min-height:760px;padding-top:130px}.showcase{margin-top:35px}.dash{grid-template-columns:1fr;height:280px}.dash .mock-card:nth-child(2){display:none}
+    .feature-grid{grid-template-columns:1fr}.wide{grid-column:auto}.feature{padding:32px;min-height:470px}.ui{left:18px;right:18px}.ideas{grid-template-columns:1fr}
+    footer{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}
+  }
+  @media(max-width:500px){.nav{padding:0 20px}.navactions{gap:10px}.navactions a{display:none}.hero{padding-left:20px;padding-right:20px}.hero p{font-size:16px}.feature-wrap,.faq{padding-left:20px;padding-right:20px}.feature h2{font-size:38px}footer{padding-left:20px;padding-right:20px;grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="brand" href="#top"><span class="logo"></span>Creator Space</a>
+  <div class="navlinks">
+    <a href="#features">Features</a><a href="#faq">FAQ</a><a href="#about">About</a>
+  </div>
+  <div class="navactions"><a href="#" onclick="openModal('signin');return false">Sign in</a><button class="pill" onclick="openModal('signup')">Sign up</button></div>
+</nav>
+
+<main id="top">
+<section class="hero">
+  <div>
+    <div class="eyebrow">A CONNECTED CREATIVE SYSTEM</div>
+    <h1>Everything you need to <em>move</em> forward.</h1>
+    <p>Organize projects, test thumbnails, generate better ideas, and give every decision the context of your channel.</p>
+    <div class="hero-cta">
+      <button class="pill" onclick="openModal('signup')">Start creating</button>
+      <a class="outline" href="#features">Explore Creator Space</a>
+    </div>
+    <div class="showcase">
+      <div class="showbar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span style="margin-left:8px;color:#555;font-size:12px">creator-space / dashboard</span></div>
+      <div class="dash">
+        <div class="mock-card"><div class="mock-title">01 / Projects</div><div class="mock-big">Your ideas, connected.</div><div class="bars"><i style="height:38%"></i><i style="height:62%"></i><i style="height:48%"></i><i style="height:82%"></i><i style="height:70%"></i><i style="height:96%"></i></div></div>
+        <div class="mock-card"><div class="mock-title">Channel intelligence</div><div class="mock-big">4.2M views</div><p style="color:#666">Performance context synced across your workspace.</p><div class="chart"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature-wrap" id="features">
+  <div class="feature-grid">
+    <article class="feature">
+      <div class="num">01 / PROJECTS</div>
+      <h2>Keep every video in one connected project.</h2>
+      <p>Notes, concepts, references, drafts, and decisions stay together so you can pick up exactly where you left off.</p>
+      <div class="ui"><div style="color:#777;font-size:10px;letter-spacing:.15em">PROJECT / SUMMER SERIES</div><div style="font-size:24px;margin-top:15px">Three ideas. One direction.</div><div class="ideas"><div class="idea"><b>Episode 01</b><span>Draft · 82%</span></div><div class="idea"><b>Episode 02</b><span>Review · 64%</span></div><div class="idea"><b>Shorts</b><span>Ready · 91%</span></div></div></div>
+    </article>
+    <article class="feature">
+      <div class="num">02 / THUMBNAIL A/B TESTING</div>
+      <h2>Choose the thumbnail viewers will click.</h2>
+      <p>Compare variants with visual analysis built around clarity, curiosity, composition, and your audience.</p>
+      <div class="ui"><div style="display:flex;justify-content:space-between;color:#777;font-size:10px"><span>THUMBNAIL CANDIDATES</span><span>LIVE VISION AI</span></div><div class="thumbs"><div class="thumb">CREATE</div><div class="thumb light">RESET</div></div></div>
+    </article>
+    <article class="feature">
+      <div class="num">03 / INFINITE BRAINSTORM</div>
+      <h2>Turn one direction into an endless stream of ideas.</h2>
+      <p>Explore angles, hooks, titles, formats, and follow-ups without losing the original creative intent.</p>
+      <div class="ui"><div style="color:#777;font-size:10px;letter-spacing:.15em">IDEA ENGINE</div><div style="font-size:21px;margin-top:15px">What if we made this impossible to ignore?</div><div class="ideas"><div class="idea"><b>Hook</b><span>Open with the result.</span></div><div class="idea"><b>Format</b><span>3-part challenge.</span></div><div class="idea"><b>Follow-up</b><span>Behind the scenes.</span></div></div></div>
+    </article>
+    <article class="feature">
+      <div class="num">04 / DASHBOARD & INTELLIGENCE</div>
+      <h2>A dashboard that makes every AI yours.</h2>
+      <p>Channel Intelligence learns from your videos, audience, and performance so recommendations stay relevant to your work.</p>
+      <div class="ui"><div style="display:flex;justify-content:space-between"><b>Your channel</b><span style="color:#777;font-size:12px">● AI synced</span></div><div style="display:flex;gap:30px;margin-top:28px"><div><small style="color:#666">LIFETIME VIEWS</small><br><b>4.2M</b></div><div><small style="color:#666">SUBSCRIBERS</small><br><b>86K</b></div><div><small style="color:#666">CONTENT PILLARS</small><br><b>4</b></div></div><div class="chart"></div></div>
+    </article>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <h2>Questions,<br><em style="font-family:Georgia,serif;font-weight:400">answered.</em></h2>
+  <div class="q" onclick="toggleQ(this)"><strong>What is Creator Space?</strong><span class="plus">+</span></div><div class="answer">Creator Space is a private workspace for organizing creative projects, developing ideas, comparing thumbnails, and keeping channel context in one place.</div>
+  <div class="q" onclick="toggleQ(this)"><strong>Is Creator Space for solo creators or teams?</strong><span class="plus">+</span></div><div class="answer">It can be used as a focused solo workspace or expanded into a shared space for collaborators.</div>
+  <div class="q" onclick="toggleQ(this)"><strong>Can I try Creator Space now?</strong><span class="plus">+</span></div><div class="answer">Yes. Use the “Start creating” or “Sign up” buttons to open the demo account screen.</div>
+  <div class="q" onclick="toggleQ(this)"><strong>Does it require Google sign-in?</strong><span class="plus">+</span></div><div class="answer">No Google sign-in is included in this version. The demo uses email and password fields instead.</div>
+</section>
+</main>
+
+<footer id="about">
+  <div class="foot-brand">Follow what<br>we're <em>building</em></div>
+  <div class="foot-col"><h4>Product</h4><a href="#features">Features</a><a href="#faq">FAQ</a><a href="#" onclick="openModal('signup');return false">Start creating</a></div>
+  <div class="foot-col"><h4>Community</h4><a href="#" onclick="openModal('signin');return false">Sign in</a><a href="#">Privacy</a><a href="#">Terms</a><a href="mailto:hello@creatorspace.example">Contact</a></div>
+  <div class="copyright">© 2026 Creator Space. Built for creators.</div>
+</footer>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="box">
+    <button class="close" onclick="closeModal()">×</button>
+    <h3 id="modalTitle">Create your account</h3>
+    <p id="modalText">Start building your private creative workspace.</p>
+    <form onsubmit="demoSubmit(event)">
+      <label>Email address</label><input id="email" type="email" placeholder="Enter your email address" required>
+      <label>Password</label><input type="password" placeholder="Create a password" minlength="6" required>
+      <button class="pill submit" type="submit">Continue&nbsp; →</button>
+    </form>
+    <div id="demoMsg" style="display:none;margin-top:16px;color:#999;font-size:13px">Demo submitted — connect your backend here to create real accounts.</div>
+  </div>
+</div>
+
+<script>
+function openModal(type){
+  document.getElementById('modal').classList.add('show');
+  document.getElementById('modalTitle').textContent=type==='signin'?'Welcome back':'Create your account';
+  document.getElementById('modalText').textContent=type==='signin'?'Sign in to your Creator Space.':'Start building your private creative workspace.';
+  document.getElementById('demoMsg').style.display='none';
+  document.getElementById('email').value='';
+}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function demoSubmit(e){e.preventDefault();document.getElementById('demoMsg').style.display='block'}
+function toggleQ(el){
+  const was=el.classList.contains('open');
+  document.querySelectorAll('.q.open').forEach(q=>{q.classList.remove('open');q.querySelector('.plus').textContent='+'});
+  if(!was){el.classList.add('open');el.querySelector('.plus').textContent='−'}
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+</script>
+</body>
+</html>
